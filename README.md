@@ -2,6 +2,8 @@
 
 mysql-vagrant is a quick way to run mysql locally for development without an ssh tunnel
 
+Before using, copy the database file in to this directory, and name it database.sql.gz. It will be automatically loaded on initialization.
+
 ### Start server
 
      $ vagrant up
@@ -11,10 +13,6 @@ mysql-vagrant is a quick way to run mysql locally for development without an ssh
 - host: 33.33.33.1
 - username: root
 - password: root
-
-### From sequel pro
-
-<img src="sequel-pro.png"/>
 
 ### Warning
 
