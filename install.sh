@@ -9,7 +9,11 @@ sudo apt-get -y install mysql-server
 sed -i "s/^bind-address/#bind-address/" /etc/mysql/my.cnf
 mysql -u root -proot -e "GRANT ALL PRIVILEGES ON *.* TO 'root'@'%' IDENTIFIED BY 'root' WITH GRANT OPTION; FLUSH PRIVILEGES;"
 sudo service mysql restart
-mysql -u root -proot -e "CREATE DATABASE ee;"
 echo "Loading the database... (could take a while)"
-zcat /vagrant/database.sql.gz | mysql -u root -proot ee
+curl http://downloads.mysql.com/docs/sakila-db.tar.gz > ./sakila-db.tar.gz
+tar -zxvf ./sakila-db.tar.gz
+cat ./sakila-db/sakila-schema.sql | mysql -u root -proot
+cat ./sakila-db/sakila-data.sql | mysql -u root -proot
+
+mysql -u root -proot -e "GRANT ALL PRIVILEGES ON sakila.* TO 'sakila'@'%' IDENTIFIED BY 'sakila' WITH GRANT OPTION; FLUSH PRIVILEGES;"
 echo "...done"
